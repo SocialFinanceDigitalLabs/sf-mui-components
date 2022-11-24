@@ -15,6 +15,7 @@ import { theme } from './theme/theme'
 import { colors, greys } from './theme/colors'
 import { spacing } from './theme/spacing'
 import { typography, typosizing } from './theme/typography'
+import { range } from './util';
 
 export {
   Block,
@@ -39,4 +40,5 @@ export {
   spacing,
   typography,
   typosizing,
+  range,
 }
