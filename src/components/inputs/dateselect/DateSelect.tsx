@@ -7,6 +7,7 @@ import {
   DateFieldWide,
   DateFieldMid,
 } from './DateSelect.styles'
+import { range } from '../../../util';
 
 export type DateObj = {
   day: string
@@ -18,11 +19,16 @@ interface DateSelectProps {
   day: string
   month: string
   year: string
+  minYear?: number
+  maxYear?: number
   onChange: (date: DateObj) => void
 }
 
+const currentYear = moment().year()
+
 const DateSelect = (props: DateSelectProps): JSX.Element => {
-  const { day, month, year } = props
+  const { day, month, year, minYear=currentYear-10, maxYear=currentYear+5 } = props
+
 
   const validateDays = (month: string, year: string): boolean => {
     const nonLeapYear = '2022'
@@ -60,8 +66,8 @@ const DateSelect = (props: DateSelectProps): JSX.Element => {
   }
 
   const renderYears = () => {
-    return ['2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015'].map(
-      (val, i) => {
+    return Array.from(range(minYear, maxYear+1)).map(
+      (val) => {
         return (
           <MenuItem key={val} value={val}>
             {val}
