@@ -1,19 +1,17 @@
-import Header from '../../components/header'
+import Header, { HeaderProps } from '../../components/header'
 import React, { ReactNode } from 'react'
 
 import { PageWrapper } from './Layout.styles'
-
-interface BodyProps {
+interface BodyProps extends HeaderProps {
   children: ReactNode
 }
 
 const Body = (props: BodyProps): JSX.Element => {
-  const { children } = props
+  const { children, title, chip } = props
 
   return (
     <div>
-      <Header />
-
+      <Header title={title} chip={chip} />
       <PageWrapper>{children}</PageWrapper>
     </div>
   )

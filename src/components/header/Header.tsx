@@ -5,7 +5,7 @@ import { AppBar, Box, Chip, Toolbar, Typography } from '@mui/material'
 
 import { SupHeader, BetaChip } from './Header.styles'
 
-interface HeaderProps {
+export interface HeaderProps {
   title: string
   chip?: string
 }
