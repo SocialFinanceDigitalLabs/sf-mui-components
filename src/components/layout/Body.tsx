@@ -5,14 +5,16 @@ import { PageWrapper } from './Layout.styles'
 
 interface BodyProps {
   children: ReactNode
+  chip?: string
+  title: string
 }
 
 const Body = (props: BodyProps): JSX.Element => {
-  const { children } = props
+  const { children, title, chip } = props
 
   return (
     <div>
-      <Header />
+      <Header title={title} chip={chip} />
 
       <PageWrapper>{children}</PageWrapper>
     </div>
