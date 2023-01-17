@@ -18,6 +18,7 @@ const LoaderCover = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 `
 
 export { LoaderWrapper, LoaderCover }
