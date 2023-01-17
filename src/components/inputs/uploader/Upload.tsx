@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDropzone } from 'react-dropzone'
+import { useDropzone, Accept } from 'react-dropzone'
 import { Box, Paper, List } from '@mui/material'
 import { Upload as UploadIcon } from '@mui/icons-material'
 
@@ -10,6 +10,8 @@ interface UploadProps {
   onUploadReady: (files: FileList) => void
   fileList: FileList
   label?: string
+  maxFiles?: number
+  accept?: Accept
 }
 
 export interface FileList {
@@ -64,7 +66,23 @@ const Upload = (props: UploadProps): JSX.Element => {
     })
   }
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+  const dropzoneConfig: {
+    onDrop: (acceptedFiles: unknown[]) => void
+    accept?: Accept
+    maxFiles?: number
+  } = { onDrop }
+
+  if (props.accept) {
+    dropzoneConfig.accept = props.accept
+  }
+
+  if (props.maxFiles) {
+    dropzoneConfig.maxFiles = props.maxFiles
+  }
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    ...dropzoneConfig,
+  })
 
   const renderFileList = () => {
     const files = fileList ? Object.values(fileList) : []
