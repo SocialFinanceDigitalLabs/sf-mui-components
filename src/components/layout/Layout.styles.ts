@@ -5,7 +5,7 @@ import { typography } from '../../theme/typography'
 
 const PageWrapper = styled.div`
   width: 100%;
-  margin: ${spacing.l} ${spacing.s};
+  margin: ${spacing.l} 0;
   font-family: ${typography};
 `
 
