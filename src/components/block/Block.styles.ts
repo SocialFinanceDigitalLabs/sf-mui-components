@@ -8,4 +8,7 @@ export const Layout = {
   blockLarge: css`
     padding: 0 0 ${spacing.l};
   `,
+  blockExtraLarge: css`
+    padding: 0 0 ${spacing.xxl};
+  `,
 }
