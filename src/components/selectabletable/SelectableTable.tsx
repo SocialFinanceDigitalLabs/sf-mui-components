@@ -53,7 +53,7 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
     <SelectableTableComponent>
       <tr>
         {headers.map((header) => {
-          return <th key={`selectable-table-header-header`}>{header}</th>
+          return <th key={`selectable-table-header-header-${header}`}>{header}</th>
         })}
       </tr>
       {rows.map((row, idx) => {
