@@ -1,20 +1,39 @@
-import { CircularProgress } from '@mui/material'
+import { CircularProgress, Typography } from '@mui/material'
 import React from 'react'
-import { LoaderWrapper, LoaderCover } from './Loader.styles'
+import { LoaderWrapper, LoaderCover, Label } from './Loader.styles'
 
 interface LoaderProps {
   type: 'inline' | 'cover'
+  label?: string
 }
 
 const Loader = (props: LoaderProps): JSX.Element => {
-  const { type } = props
+  const { type, label } = props
+
+  const renderLabel = () => {
+    return label ? (
+      <Label>
+        <Typography>{label}</Typography>
+      </Label>
+    ) : null
+  }
 
   const renderWrapper = (spinner: React.ReactNode) => {
     if (type === 'inline') {
-      return <LoaderWrapper>{spinner}</LoaderWrapper>
+      return (
+        <LoaderWrapper>
+          {spinner}
+          {renderLabel()}
+        </LoaderWrapper>
+      )
     }
 
-    return <LoaderCover>{spinner}</LoaderCover>
+    return (
+      <LoaderCover>
+        {spinner}
+        {renderLabel()}
+      </LoaderCover>
+    )
   }
 
   return renderWrapper(<CircularProgress />)

@@ -1,10 +1,12 @@
 import styled from '@emotion/styled'
+import { spacing } from '../../theme/spacing'
 
 const LoaderWrapper = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 `
 
 const LoaderCover = styled.div`
@@ -15,10 +17,14 @@ const LoaderCover = styled.div`
   left: 0;
   background: rgba(255, 255, 255, 0.5);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 `
 
-export { LoaderWrapper, LoaderCover }
+const Label = styled.div`
+  padding-top: ${spacing.m};
+`
+
+export { LoaderWrapper, LoaderCover, Label }
