@@ -9,12 +9,21 @@ export default {
    */
   title: 'Loader',
   component: Loader,
+  argTypes: {
+    type: {
+      options: ['inline', 'cover'],
+      control: { type: 'radio' },
+      defaultValue: 'inline',
+    },
+    label: {
+      control: 'text',
+      defaultValue: 'Loading!',
+    },
+  },
 } as ComponentMeta<typeof Loader>
 
-export const Inline: ComponentStory<typeof Loader> = () => (
-  <Loader type="inline" />
-)
+const LoaderInst: ComponentStory<typeof Loader> = (props) => {
+  return <Loader {...props} />
+}
 
-export const Cover: ComponentStory<typeof Loader> = () => (
-  <Loader type="cover" />
-)
+export { LoaderInst as Loader }
