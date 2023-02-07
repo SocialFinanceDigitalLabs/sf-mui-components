@@ -5,15 +5,26 @@ import { Box } from '@mui/material'
 
 import { Layout } from './Block.styles'
 
+interface Styling {
+  [key: string]: string
+}
+
 interface BlockProps {
   children: React.ReactNode
   spacing?: 'block' | 'blockLarge' | 'blockExtraLarge'
+  styling?: Styling
 }
 
 const Block = (props: BlockProps): JSX.Element => {
-  const { children, spacing } = props
+  const { children, spacing, styling } = props
 
-  return <Box css={Layout[spacing || 'block']}>{children}</Box>
+  const style = styling ? { ...styling } : {}
+
+  return (
+    <Box style={style} css={Layout[spacing || 'block']}>
+      {children}
+    </Box>
+  )
 }
 
 export default Block
