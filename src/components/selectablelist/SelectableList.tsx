@@ -3,7 +3,7 @@ import { Box, Button, List } from '@mui/material'
 
 import ListItem, { SelectableListItem } from './ListItem'
 
-interface SelectableListProps {
+type SelectableListProps = {
   values: SelectableListItem[]
   onItemSelected: (itemsSelected: string[]) => void
 }

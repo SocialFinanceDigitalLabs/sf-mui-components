@@ -2,7 +2,7 @@ import { CircularProgress, Typography } from '@mui/material'
 import React from 'react'
 import { LoaderWrapper, LoaderCover, Label } from './Loader.styles'
 
-interface LoaderProps {
+type LoaderProps = {
   type: 'inline' | 'cover'
   label?: string
 }
