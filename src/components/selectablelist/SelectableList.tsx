@@ -69,6 +69,7 @@ const SelectableList = (props: SelectableListProps): JSX.Element => {
               onClick={handleClick}
               checked={selectedItems.indexOf(value.value) > -1}
               value={value}
+              key={`top-list-${value.value}`}
             />
           )
         })}
