@@ -5,11 +5,11 @@ import { Box } from '@mui/material'
 
 import { Layout } from './Block.styles'
 
-interface Styling {
+type Styling = {
   [key: string]: string
 }
 
-interface BlockProps {
+type BlockProps = {
   children: React.ReactNode
   spacing?: 'block' | 'blockLarge' | 'blockExtraLarge'
   styling?: Styling
