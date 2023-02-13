@@ -36,7 +36,7 @@ const Loader = (props: LoaderProps): JSX.Element => {
     )
   }
 
-  return renderWrapper(<CircularProgress />)
+  return renderWrapper(<CircularProgress color="primary" />)
 }
 
 export default Loader
