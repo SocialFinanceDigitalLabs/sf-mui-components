@@ -1,5 +1,5 @@
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import { theme } from '../src/theme/theme'
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
+import { theme as SFTheme } from '../src/theme/theme'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -10,6 +10,10 @@ export const parameters = {
     },
   },
 }
+
+const CINTheme = { ...SFTheme }
+
+const theme = createTheme(CINTheme)
 
 export const withMuiTheme = (Story) => {
   return (

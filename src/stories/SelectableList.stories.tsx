@@ -9,6 +9,7 @@ export default {
 
 const SelectableListInst: ComponentStory<typeof SelectableList> = () => {
   const props = {
+    initialSelectedItems: ['ItemOne', 'ItemTwo'],
     values: [
       { value: 'ItemOne', label: 'Item One' },
       { value: 'ItemTwo', label: 'Item Two' },
