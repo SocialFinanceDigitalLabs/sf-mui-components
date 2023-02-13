@@ -6,6 +6,9 @@ export const theme = {
     primary: {
       main: colors.primary,
     },
+    secondary: {
+      main: colors.secondary,
+    },
   },
   typography: {
     fontFamily: typography,
