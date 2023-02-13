@@ -4,13 +4,16 @@ import { Box, Button, List } from '@mui/material'
 import ListItem, { SelectableListItem } from './ListItem'
 
 type SelectableListProps = {
+  initialSelectedItems?: string[]
   values: SelectableListItem[]
   onItemSelected: (itemsSelected: string[]) => void
 }
 
 const SelectableList = (props: SelectableListProps): JSX.Element => {
-  const { values, onItemSelected } = props
-  const [selectedItems, setSelectedItems] = useState<string[]>([])
+  const { values, onItemSelected, initialSelectedItems } = props
+  const [selectedItems, setSelectedItems] = useState<string[]>(
+    initialSelectedItems || []
+  )
 
   const handleClick = useCallback((value: SelectableListItem) => {
     setSelectedItems((prevSelectedItems) => {
@@ -49,6 +52,8 @@ const SelectableList = (props: SelectableListProps): JSX.Element => {
   return (
     <Box>
       <Button
+        autoFocus={false}
+        disableFocusRipple={true}
         disableRipple
         disabled={selectedItems.length === values.length}
         onClick={handleSelectAllClick}
@@ -56,6 +61,8 @@ const SelectableList = (props: SelectableListProps): JSX.Element => {
         Select all
       </Button>
       <Button
+        autoFocus={false}
+        disableFocusRipple={true}
         disableRipple
         disabled={selectedItems.length === 0}
         onClick={handleUnSelectAllClick}
