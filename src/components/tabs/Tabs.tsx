@@ -1,33 +1,37 @@
-import React, { SyntheticEvent, useState } from "react";
-import { Tabs as MuiTabs, Tab, Box } from "@mui/material";
+import React, { SyntheticEvent, useState } from 'react'
+import { Tabs as MuiTabs, Tab, Box } from '@mui/material'
 
-import TabPanel from "./TabPanel";
+import TabPanel from './TabPanel'
 
 type TabHeader = {
-  label: string;
-};
+  label: string
+}
 
 interface TabsProps {
-  headers: TabHeader[];
-  bodies: React.ReactNode[];
-  id: string;
-  overflowPanelY?: boolean;
+  headers: TabHeader[]
+  bodies: React.ReactNode[]
+  id: string
+  overflowPanelY?: boolean
+  onChange?: (num: number) => void
 }
 
 const Tabs = (props: TabsProps) => {
-  const { headers, bodies, id, overflowPanelY } = props;
+  const { headers, bodies, id, overflowPanelY, onChange } = props
 
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0)
 
   const handleChange = (evt: SyntheticEvent, num: number) => {
-    setValue(num);
-  };
+    setValue(num)
+    if (onChange) {
+      onChange(num)
+    }
+  }
 
   const renderHeaders = () => {
     return headers.map((header, idx) => {
-      return <Tab label={header.label} key={`${id}-${idx}-head`} />;
-    });
-  };
+      return <Tab label={header.label} key={`${id}-${idx}-head`} />
+    })
+  }
 
   const renderBodies = () => {
     return bodies.map((body, idx) => {
@@ -41,13 +45,13 @@ const Tabs = (props: TabsProps) => {
         >
           {body}
         </TabPanel>
-      );
-    });
-  };
+      )
+    })
+  }
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <MuiTabs
           value={value}
           onChange={handleChange}
@@ -58,7 +62,7 @@ const Tabs = (props: TabsProps) => {
       </Box>
       {renderBodies()}
     </Box>
-  );
-};
+  )
+}
 
-export default Tabs;
+export default Tabs
