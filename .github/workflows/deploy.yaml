@@ -10,9 +10,23 @@ jobs:
       name: github-pages
       url: ${{ steps.build-publish.outputs.page_url }}
     runs-on: ubuntu-latest
+    using: 'composite'
     steps:
-      - id: build-publish
-        uses: bitovi/github-actions-react-to-ghp@v1.2.0
+      - name: 'Build'
+        shell: bash
+        run: |
+          echo "::group::Build"
+          yarn install --frozen-lockfile
+          yarn build-storybook
+          echo "::endgroup::"
+
+      - name: 'upload'
+        uses: actions/upload-pages-artifact@v1.0.4
         with:
-          path: storybook-static
-          build_command: yarn build-storybook
+          path: ./storybook-static
+
+      - id: deploy
+        name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
+        with:
+          token: ${{ github.token }}
