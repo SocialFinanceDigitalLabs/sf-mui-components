@@ -7,7 +7,7 @@ type TabHeader = {
   label: string
 }
 
-interface TabsProps {
+export interface TabsProps {
   headers: TabHeader[]
   bodies: React.ReactNode[]
   id: string
@@ -15,7 +15,7 @@ interface TabsProps {
   onChange?: (num: number) => void
 }
 
-const Tabs = (props: TabsProps) => {
+const Tabs = (props: TabsProps): JSX.Element => {
   const { headers, bodies, id, overflowPanelY, onChange } = props
 
   const [value, setValue] = useState(0)
