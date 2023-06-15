@@ -7,7 +7,7 @@ export default {
   component: Tabs,
 } as ComponentMeta<typeof Tabs>
 
-const TabsInst: ComponentStory<typeof Tabs> = (props) => {
+const TabsInst: ComponentStory<typeof Tabs> = () => {
   const headers = [{ label: 'Tab1' }, { label: 'Tab2' }]
 
   const bodies = [<div>Tab1 content</div>, <div>Tab2 content</div>]
