@@ -9,7 +9,7 @@ import { ExpandMore, SvgIconComponent } from '@mui/icons-material'
 
 import { IconContainer, ContentContainer, TriggerText } from './Expando.styles'
 
-interface ExpandoProps {
+export interface ExpandoProps {
   title: string
   Icon?: SvgIconComponent
   id: string
