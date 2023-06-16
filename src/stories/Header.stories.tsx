@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import Header from '../components/header'
 
 export default {
-  title: 'Header',
+  title: 'Components/Header',
   component: Header,
   argTypes: {
     title: {

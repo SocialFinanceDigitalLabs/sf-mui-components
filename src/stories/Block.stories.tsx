@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import Block from '../components/block'
 
 export default {
-  title: 'Block',
+  title: 'Components/Block',
   component: Block,
   argTypes: {
     spacing: {

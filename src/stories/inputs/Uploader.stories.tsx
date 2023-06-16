@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import Upload from '../../components/inputs/uploader'
 
 export default {
-  title: 'Upload',
+  title: 'Components/Inputs/Upload',
   component: Upload,
   argTypes: {
     onUploadReady: {

@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import Expando from '../components/expando'
 
 export default {
-  title: 'Expando',
+  title: 'Components/Expando',
   component: Expando,
   argTypes: {
     title: {

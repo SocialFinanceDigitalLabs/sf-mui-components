@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import DateSelect from '../../components/inputs/dateselect'
 
 export default {
-  title: 'Date Select',
+  title: 'Components/Inputs/Date Select',
   component: DateSelect,
   argTypes: {},
 } as ComponentMeta<typeof DateSelect>

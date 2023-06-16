@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import ButtonPopover from '../components/buttonpopover'
 
 export default {
-  title: 'Button Popover',
+  title: 'Components/Button Popover',
   component: ButtonPopover,
   argTypes: {
     label: {
