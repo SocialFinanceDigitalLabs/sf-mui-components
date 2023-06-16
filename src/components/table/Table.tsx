@@ -11,7 +11,7 @@ type TableRowType = {
   cells: unknown[]
 }
 
-interface TableProps {
+export interface TableProps {
   headers: string[]
   rows: TableRowType[]
   id: string
