@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import SelectableList from '../components/selectablelist'
 
 export default {
-  title: 'SelectableList',
+  title: 'Components/SelectableList',
   component: SelectableList,
 } as ComponentMeta<typeof SelectableList>
 

@@ -3,7 +3,7 @@ import { Button, Popover } from '@mui/material'
 
 import { PopoverContent } from './ButtonPopover.styles'
 
-interface ButtonPopoverProps {
+export interface ButtonPopoverProps {
   children?: ReactNode
   label: string
 }
