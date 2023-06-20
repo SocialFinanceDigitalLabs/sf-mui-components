@@ -2,7 +2,8 @@ import Header, { HeaderProps } from '../../components/header'
 import React, { ReactNode } from 'react'
 
 import { PageWrapper } from './Layout.styles'
-interface BodyProps extends HeaderProps {
+
+export interface BodyProps extends HeaderProps {
   children: ReactNode
 }
 

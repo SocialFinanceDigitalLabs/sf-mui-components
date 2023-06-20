@@ -6,7 +6,7 @@ import { Upload as UploadIcon } from '@mui/icons-material'
 import UploadItem, { FileBody } from './UploadItem'
 import { DropArea } from './Uploader.styles'
 
-interface UploadProps {
+export interface UploadProps {
   onUploadReady: (files: FileList) => void
   fileList: FileList
   label?: string
