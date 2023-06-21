@@ -26,4 +26,29 @@ const SelectableTableInst: ComponentStory<typeof SelectableTable> = () => {
   )
 }
 
-export { SelectableTableInst as SelectableTable }
+const SelectableTableInitiallySelected: ComponentStory<
+  typeof SelectableTable
+> = () => {
+  const rows = [
+    ['hello', 'world'],
+    ['hello', 'world'],
+  ]
+
+  const headers = ['Hello', 'World']
+
+  return (
+    <SelectableTable
+      rows={rows}
+      headers={headers}
+      onRowSelect={(row, key) => {
+        console.log(key)
+      }}
+      initiallySelectedRow="row-hello-1"
+    />
+  )
+}
+
+export {
+  SelectableTableInst as SelectableTable,
+  SelectableTableInitiallySelected,
+}

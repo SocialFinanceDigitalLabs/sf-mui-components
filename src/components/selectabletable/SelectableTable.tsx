@@ -9,13 +9,16 @@ import {
 export interface SelectableTableProps {
   rows: unknown[][]
   headers: string[]
-  onRowSelect: (row: unknown[]) => void
+  onRowSelect: (row: unknown[], selectedRowKey: string | null) => void
+  initiallySelectedRow?: string
 }
 
 const SelectableTable = (props: SelectableTableProps): JSX.Element => {
-  const { rows, onRowSelect, headers } = props
+  const { rows, onRowSelect, headers, initiallySelectedRow } = props
 
-  const [selectedRow, setSelectedRow] = useState<null | string>(null)
+  const [selectedRow, setSelectedRow] = useState<null | string>(
+    initiallySelectedRow || null
+  )
 
   const renderCell = (
     cell: string,
@@ -28,8 +31,9 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
         selected={key === selectedRow}
         key={`${key}-${idx}`}
         onClick={() => {
-          setSelectedRow(key === (selectedRow as string) ? null : key)
-          onRowSelect(row)
+          const value = key === (selectedRow as string) ? null : key
+          setSelectedRow(value)
+          onRowSelect(row, value)
         }}
       >
         {cell}
