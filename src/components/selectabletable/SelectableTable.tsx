@@ -28,7 +28,7 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
         selected={key === selectedRow}
         key={`${key}-${idx}`}
         onClick={() => {
-          setSelectedRow(key)
+          setSelectedRow(key === (selectedRow as string) ? null : key)
           onRowSelect(row)
         }}
       >
