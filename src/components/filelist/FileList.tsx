@@ -9,7 +9,7 @@ export type FileItemType = {
   type?: 'doc' | 'xls' | 'csv' | 'pdf'
 }
 
-interface FileListProps {
+export interface FileListProps {
   fileList: FileItemType[]
   onChange: (fileList: FileItemType[]) => void
 }
