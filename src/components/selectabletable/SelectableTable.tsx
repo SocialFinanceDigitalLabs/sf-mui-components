@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import {
   SelectableTable as SelectableTableComponent,
+  SelectableTableHeader,
   SelectableTableRow,
   SelectableTableCell,
 } from './SelectableTable.styles'
@@ -16,9 +17,33 @@ export interface SelectableTableProps {
 const SelectableTable = (props: SelectableTableProps): JSX.Element => {
   const { rows, onRowSelect, headers, initiallySelectedRow } = props
 
+  const initialRows = () => {
+    return [...rows].map((row: unknown[], idx) => {
+      row.push(idx)
+
+      return row // return row with the static key added as an extra element at the end of the array
+    })
+  }
+
+  const [rowSet, setRowSet] = useState<unknown[][]>(initialRows)
+
   const [selectedRow, setSelectedRow] = useState<null | string>(
     initiallySelectedRow || null
   )
+
+  const sortRows = (col: number): void => {
+    const sortedRows = [...rowSet].sort((a, b) => {
+      if (a[col] === b[col]) {
+        return 0
+      }
+
+      // eslint-disable-next-line
+      // @ts-ignore
+      return a[col] < b[col] ? -1 : 1
+    })
+
+    setRowSet(sortedRows)
+  }
 
   const renderCell = (
     cell: string,
@@ -41,12 +66,15 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
     )
   }
 
-  const renderRow = (row: unknown[], idx: number) => {
-    const key = `row-${row[0]}-${idx}`
+  const renderRow = (row: unknown[]) => {
+    const key = `row-${row[row.length - 1]}`
 
     return (
       <SelectableTableRow key={key}>
         {row.map((cell, cidx) => {
+          if (cidx === row.length - 1) {
+            return null
+          }
           return renderCell(cell as string, cidx, key, row)
         })}
       </SelectableTableRow>
@@ -57,17 +85,24 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
     <SelectableTableComponent>
       <thead>
         <tr>
-          {headers.map((header) => {
+          {headers.map((header, idx) => {
             return (
-              <th key={`selectable-table-header-header-${header}`}>{header}</th>
+              <SelectableTableHeader
+                key={`selectable-table-header-header-${header}`}
+                onClick={() => {
+                  sortRows(idx)
+                }}
+              >
+                {header}
+              </SelectableTableHeader>
             )
           })}
         </tr>
       </thead>
 
       <tbody>
-        {rows.map((row, idx) => {
-          return renderRow(row, idx)
+        {rowSet.map((row) => {
+          return renderRow(row)
         })}
       </tbody>
     </SelectableTableComponent>

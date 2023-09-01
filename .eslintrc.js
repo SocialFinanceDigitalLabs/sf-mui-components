@@ -1,11 +1,15 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  extends: ['plugin:@typescript-eslint/recommended', 'prettier', 'plugin:storybook/recommended'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:storybook/recommended',
+  ],
   parserOptions: {
-    sourceType: 'module'
+    sourceType: 'module',
   },
   rules: {
-    'prettier/prettier': 'error'
+    'prettier/prettier': 'error',
   },
-  plugins: ['@typescript-eslint', 'prettier']
-};
+  plugins: ['@typescript-eslint', 'prettier'],
+}

@@ -9,11 +9,13 @@ export default {
 
 const SelectableTableInst: ComponentStory<typeof SelectableTable> = () => {
   const rows = [
-    ['hello', 'world'],
-    ['hello', 'world'],
+    ['hello 2', 'world 1'],
+    ['hello 1', 'world 2'],
   ]
 
   const headers = ['Hello', 'World']
+
+  console.log('storybook!!!!')
 
   return (
     <SelectableTable
