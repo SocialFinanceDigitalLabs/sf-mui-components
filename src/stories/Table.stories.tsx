@@ -8,7 +8,10 @@ export default {
 } as ComponentMeta<typeof Table>
 
 const TableInst: ComponentStory<typeof Table> = (props) => {
-  const rows = [{ cells: ['hello', 'world'] }, { cells: ['hello', 'world'] }]
+  const rows = [
+    { cells: ['hello 1', 'world 1'] },
+    { cells: ['hello 2', 'world 2'] },
+  ]
 
   const headers = ['Hello', 'World']
 

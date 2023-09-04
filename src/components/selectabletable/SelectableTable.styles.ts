@@ -9,6 +9,10 @@ const SelectableTable = styled.table`
   border-collapse: collapse;
 `
 
+const SelectableTableHeader = styled.th`
+  cursor: pointer;
+`
+
 const SelectableTableRow = styled.tr``
 
 const SelectableTableCell = styled.td<SelectableTableCellProps>`
@@ -18,4 +22,9 @@ const SelectableTableCell = styled.td<SelectableTableCellProps>`
   cursor: pointer;
 `
 
-export { SelectableTable, SelectableTableCell, SelectableTableRow }
+export {
+  SelectableTable,
+  SelectableTableHeader,
+  SelectableTableCell,
+  SelectableTableRow,
+}
