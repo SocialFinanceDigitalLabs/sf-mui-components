@@ -19,7 +19,9 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
 
   const initialRows = () => {
     return [...rows].map((row: unknown[], idx) => {
-      row.push(idx)
+      if (row.length === headers.length) {
+        row.push(idx)
+      }
 
       return row // return row with the static key added as an extra element at the end of the array
     })
