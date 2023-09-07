@@ -1,6 +1,6 @@
 {
   "name": "@sfdl/sf-mui-components",
-  "version": "0.1.17-1",
+  "version": "0.1.18",
   "description": "",
   "main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
