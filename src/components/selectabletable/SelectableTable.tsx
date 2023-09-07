@@ -18,13 +18,7 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
   const { rows, onRowSelect, headers, initiallySelectedRow } = props
 
   const initialRows = () => {
-    return [...rows].map((row: unknown[], idx) => {
-      if (row.length === headers.length) {
-        row.push(idx)
-      }
-
-      return row // return row with the static key added as an extra element at the end of the array
-    })
+    return rows
   }
 
   const [rowSet, setRowSet] = useState<unknown[][]>(initialRows)
@@ -32,6 +26,10 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
   const [selectedRow, setSelectedRow] = useState<null | string>(
     initiallySelectedRow || null
   )
+
+  useEffect(() => {
+    setRowSet(rows)
+  }, [rows])
 
   const sortRows = (col: number): void => {
     const sortedRows = [...rowSet].sort((a, b) => {
@@ -69,14 +67,11 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
   }
 
   const renderRow = (row: unknown[]) => {
-    const key = `row-${row[row.length - 1]}`
+    const key = `row-${row.join('-')}`
 
     return (
       <SelectableTableRow key={key}>
         {row.map((cell, cidx) => {
-          if (cidx === row.length - 1) {
-            return null
-          }
           return renderCell(cell as string, cidx, key, row)
         })}
       </SelectableTableRow>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import SelectableTable from '../components/selectabletable'
 
@@ -13,18 +13,38 @@ const SelectableTableInst: ComponentStory<typeof SelectableTable> = () => {
     ['hello 1', 'world 2'],
   ]
 
+  const initialRows = () => {
+    return rows
+  }
+
+  const [rowState, setRowState] = useState(initialRows)
+
   const headers = ['Hello', 'World']
 
-  console.log('storybook!!!!')
+  const handleClick = () => {
+    const newRows = [...rowState]
+
+    newRows.push([
+      `hello ${Math.ceil(Math.random() * (500 - 300) + 3)}`,
+      `world ${Math.ceil(Math.random() * (500 - 300) + 3)}`,
+    ])
+
+    setRowState(newRows)
+  }
 
   return (
-    <SelectableTable
-      rows={rows}
-      headers={headers}
-      onRowSelect={(row) => {
-        alert('selected row')
-      }}
-    />
+    <>
+      <SelectableTable
+        rows={rowState}
+        headers={headers}
+        onRowSelect={() => {
+          alert('selected row')
+        }}
+      />
+      <p>
+        <button onClick={handleClick}>Add row</button>
+      </p>
+    </>
   )
 }
 
@@ -39,14 +59,16 @@ const SelectableTableInitiallySelected: ComponentStory<
   const headers = ['Hello', 'World']
 
   return (
-    <SelectableTable
-      rows={rows}
-      headers={headers}
-      onRowSelect={(row, key) => {
-        console.log(key)
-      }}
-      initiallySelectedRow="row-hello-1"
-    />
+    <>
+      <SelectableTable
+        rows={rows}
+        headers={headers}
+        onRowSelect={(row, key) => {
+          console.log(key)
+        }}
+        initiallySelectedRow="row-hello-1"
+      />
+    </>
   )
 }
 
