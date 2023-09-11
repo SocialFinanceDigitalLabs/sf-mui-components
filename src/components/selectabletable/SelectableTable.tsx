@@ -7,11 +7,22 @@ import {
   SelectableTableCell,
 } from './SelectableTable.styles'
 
+import {
+  ArrowDropDown,
+  ArrowDropUp,
+  SvgIconComponent,
+} from '@mui/icons-material'
+
 export interface SelectableTableProps {
   rows: unknown[][]
   headers: string[]
   onRowSelect: (row: unknown[], selectedRowKey: string | null) => void
   initiallySelectedRow?: string
+}
+
+enum SortDirection {
+  ASC = 'ASC',
+  DESC = 'DESC',
 }
 
 const SelectableTable = (props: SelectableTableProps): JSX.Element => {
@@ -22,27 +33,43 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
   }
 
   const [rowSet, setRowSet] = useState<unknown[][]>(initialRows)
+  const [sortColumn, setSortColumn] = useState(0)
+  const [sortDirection, setSortDirection] = useState<SortDirection>(
+    SortDirection.DESC
+  )
 
   const [selectedRow, setSelectedRow] = useState<null | string>(
     initiallySelectedRow || null
   )
 
   useEffect(() => {
-    setRowSet(rows)
+    setRowSet(doSort(sortColumn, SortDirection.DESC, rows))
   }, [rows])
 
-  const sortRows = (col: number): void => {
-    const sortedRows = [...rowSet].sort((a, b) => {
+  const doSort = (
+    col: number,
+    direction: SortDirection,
+    rowsToSort: unknown[][]
+  ): unknown[][] => {
+    return [...rowsToSort].sort((a, b) => {
       if (a[col] === b[col]) {
         return 0
       }
 
+      if (direction === SortDirection.ASC) {
+        // eslint-disable-next-line
+        // @ts-ignore
+        return a[col] < b[col] ? -1 : 1
+      }
+
       // eslint-disable-next-line
       // @ts-ignore
-      return a[col] < b[col] ? -1 : 1
+      return a[col] < b[col] ? 1 : -1
     })
+  }
 
-    setRowSet(sortedRows)
+  const sortRows = (col: number, direction: SortDirection): void => {
+    setRowSet(doSort(col, direction, rowSet))
   }
 
   const renderCell = (
@@ -78,23 +105,44 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
     )
   }
 
+  const renderHeaders = () => {
+    return headers.map((header, idx) => {
+      return (
+        <SelectableTableHeader
+          key={`selectable-table-header-header-${header}`}
+          onClick={() => {
+            let currSortDirection = sortDirection
+
+            if (idx === sortColumn) {
+              currSortDirection =
+                currSortDirection === SortDirection.ASC
+                  ? SortDirection.DESC
+                  : SortDirection.ASC
+            } else {
+              setSortColumn(idx)
+              currSortDirection = SortDirection.DESC
+            }
+
+            setSortDirection(currSortDirection)
+
+            sortRows(idx, currSortDirection)
+          }}
+        >
+          {header}
+          {sortDirection === SortDirection.DESC && sortColumn === idx ? (
+            <ArrowDropUp />
+          ) : (
+            <ArrowDropDown />
+          )}
+        </SelectableTableHeader>
+      )
+    })
+  }
+
   return (
     <SelectableTableComponent>
       <thead>
-        <tr>
-          {headers.map((header, idx) => {
-            return (
-              <SelectableTableHeader
-                key={`selectable-table-header-header-${header}`}
-                onClick={() => {
-                  sortRows(idx)
-                }}
-              >
-                {header}
-              </SelectableTableHeader>
-            )
-          })}
-        </tr>
+        <tr>{renderHeaders()}</tr>
       </thead>
 
       <tbody>

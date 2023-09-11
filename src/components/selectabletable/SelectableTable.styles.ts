@@ -11,6 +11,12 @@ const SelectableTable = styled.table`
 
 const SelectableTableHeader = styled.th`
   cursor: pointer;
+
+  svg {
+    display: inline-block;
+    position: relative;
+    top: 6px;
+  }
 `
 
 const SelectableTableRow = styled.tr``
