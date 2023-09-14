@@ -16,7 +16,6 @@ export interface ExpandoProps {
   children: React.ReactNode
   defaultExpanded?: boolean
 }
-x``
 
 const Expando = (props: ExpandoProps): JSX.Element => {
   const { title, children, Icon, id, defaultExpanded } = props
