@@ -106,12 +106,16 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
     )
   }
 
+  const getHeaderString = (header: HeaderItem | string): string => {
+    return typeof header === 'string' ? header : header.label
+  }
+
   const renderHeaders = () => {
     return headers.map((header, idx) => {
       return (
         <SelectableTableHeader
           width={typeof header === 'string' ? undefined : header.width}
-          key={`selectable-table-header-header-${header}`}
+          key={`selectable-table-header-header-${getHeaderString(header)}`}
           onClick={() => {
             let currSortDirection = sortDirection
 
@@ -130,7 +134,7 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
             sortRows(idx, currSortDirection)
           }}
         >
-          {typeof header === 'string' ? header : header.label}
+          {getHeaderString(header)}
           {sortDirection === SortDirection.DESC && sortColumn === idx ? (
             <ArrowDropUp />
           ) : (
