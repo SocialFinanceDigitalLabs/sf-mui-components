@@ -53,7 +53,7 @@ const SelectableTableInitiallySelected: ComponentStory<
 > = () => {
   const rows = [
     ['hello', 'world'],
-    ['hello', 'world'],
+    ['hello 1', 'world 1'],
   ]
 
   const headers = ['Hello', 'World']
@@ -77,7 +77,7 @@ const SelectableTableHeaderConfig: ComponentStory<
 > = () => {
   const rows = [
     ['hello', 'world'],
-    ['hello', 'world'],
+    ['hello 1', 'world 1'],
   ]
 
   const headers = [{ label: 'Hello', width: 100 }, { label: 'world' }]
