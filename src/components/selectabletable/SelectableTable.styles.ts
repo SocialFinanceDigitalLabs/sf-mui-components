@@ -4,13 +4,18 @@ type SelectableTableCellProps = {
   selected: boolean
 }
 
+type SelectableTableHeaderProps = {
+  width?: number
+}
+
 const SelectableTable = styled.table`
   width: 100%;
   border-collapse: collapse;
 `
 
-const SelectableTableHeader = styled.th`
+const SelectableTableHeader = styled.th<SelectableTableHeaderProps>`
   cursor: pointer;
+  width: ${(props) => (props.width ? props.width + 'px' : 'auto')};
 
   svg {
     display: inline-block;
