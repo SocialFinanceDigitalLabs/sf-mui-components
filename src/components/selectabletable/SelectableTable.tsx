@@ -7,15 +7,11 @@ import {
   SelectableTableCell,
 } from './SelectableTable.styles'
 
-import {
-  ArrowDropDown,
-  ArrowDropUp,
-  SvgIconComponent,
-} from '@mui/icons-material'
+import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material'
 
 export interface SelectableTableProps {
   rows: unknown[][]
-  headers: string[]
+  headers: string[] | HeaderItem[]
   onRowSelect: (row: unknown[], selectedRowKey: string | null) => void
   initiallySelectedRow?: string
 }
@@ -23,6 +19,11 @@ export interface SelectableTableProps {
 enum SortDirection {
   ASC = 'ASC',
   DESC = 'DESC',
+}
+
+type HeaderItem = {
+  label: string
+  width?: number
 }
 
 const SelectableTable = (props: SelectableTableProps): JSX.Element => {
@@ -109,6 +110,7 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
     return headers.map((header, idx) => {
       return (
         <SelectableTableHeader
+          width={typeof header === 'string' ? undefined : header.width}
           key={`selectable-table-header-header-${header}`}
           onClick={() => {
             let currSortDirection = sortDirection
@@ -128,7 +130,7 @@ const SelectableTable = (props: SelectableTableProps): JSX.Element => {
             sortRows(idx, currSortDirection)
           }}
         >
-          {header}
+          {typeof header === 'string' ? header : header.label}
           {sortDirection === SortDirection.DESC && sortColumn === idx ? (
             <ArrowDropUp />
           ) : (

@@ -72,7 +72,32 @@ const SelectableTableInitiallySelected: ComponentStory<
   )
 }
 
+const SelectableTableHeaderConfig: ComponentStory<
+  typeof SelectableTable
+> = () => {
+  const rows = [
+    ['hello', 'world'],
+    ['hello', 'world'],
+  ]
+
+  const headers = [{ label: 'Hello', width: 100 }, { label: 'world' }]
+
+  return (
+    <>
+      <SelectableTable
+        rows={rows}
+        headers={headers}
+        onRowSelect={(row, key) => {
+          console.log(key)
+        }}
+        initiallySelectedRow="row-hello-1"
+      />
+    </>
+  )
+}
+
 export {
   SelectableTableInst as SelectableTable,
   SelectableTableInitiallySelected,
+  SelectableTableHeaderConfig,
 }
